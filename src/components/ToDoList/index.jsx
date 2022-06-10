@@ -2,8 +2,10 @@ import styled from 'styled-components'
 import colors from '../../utils/colors'
 import Task from '../Task/index'
 import CreateTaskBar from '../CreateTaskBar'
+import { useState, useEffect } from 'react'
 
 const ToDoListContainer = styled.div`
+    min-height: 80vh;
     width: min(95vw, 550px);
     background: ${colors.backGround};
     box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
@@ -44,23 +46,48 @@ const TaskList = styled.div`
 
 function ToDoList(){
 
-    const tasks = []
+    const [taskList, setTaskList] = useState({
+        1: {content: "Ceci est une tâche 1", checked: false},
+        2: {content: "Ceci est une tâche 2", checked: true}
+    })
 
-    for (let i = 2 ; i <= 15 ; i++){
-        tasks.push(<Task checked={false} taskText={"important task number " + i.toString()} />)
+    const [taskCounter, setTaskCounter] = useState(3)
+    const [newTaskText, setNewTaskText] = useState('')
+
+    function toogleCheck(id){
+       const newCheck = !(taskList[id]['checked'])
+        setTaskList({...taskList, [id]: {...taskList[id], checked : newCheck}})
     }
 
-    tasks.unshift(<Task checked={true} taskText="important task number 1" />)
+    function createNewTask(taskContent){
+        setTaskList({...taskList, [taskCounter]: {content: taskContent, checked:false}})
+        setNewTaskText('')
+        setTaskCounter(taskCounter + 1)
+    }
 
+    useEffect(() => console.log(taskList), [taskList])
 
     return(
         <ToDoListContainer>
             <Header>
                 <Title>To Do List</Title>
-                <CreateTaskBar />
-            </Header>
+                <CreateTaskBar
+                    newTaskText={newTaskText}
+                    setNewTaskText={setNewTaskText}
+                    createNewTask={createNewTask}
+                />
+            </Header>   
             <TaskList>
-                { tasks }
+                {Object.keys(taskList).map((task) => {
+                    return (
+                        <Task
+                            checked={taskList[task]['checked']}
+                            taskText={taskList[task]['content']}
+                            id={task}
+                            toogleCheck={toogleCheck}
+                        />
+                    )
+                })}
             </TaskList>
         </ToDoListContainer>
     )

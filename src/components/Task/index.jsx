@@ -97,14 +97,18 @@ const CheckBox = styled.div`
 
 const CheckedBox = styled.img`
     height: 80%;
+    user-select: none;
 `
 
 
-function Task({ checked, taskText }) {
+function Task({ checked, taskText, id, toogleCheck}) {
 
     return(
         <TaskContainer checked={checked}>
-            <CheckBox checked={checked}>
+            <CheckBox
+                checked={checked}
+                onClick={() => toogleCheck(id)}
+            >
                 { checked && <CheckedBox src={checkedLogo}/> }
             </CheckBox>
             <TaskContent checked={checked}>{ taskText }</TaskContent>

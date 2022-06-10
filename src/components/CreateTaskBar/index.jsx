@@ -50,12 +50,23 @@ const AddButtonLogo = styled.img`
     padding-right: 2px;
 `
 
-function CreateTaskBar(){
+function CreateTaskBar({newTaskText, setNewTaskText, createNewTask}){
+
+    function updateTask(newTaskText){
+        let inputBar = document.querySelector('.InputBar')
+        if(inputBar.value !== ''){
+            createNewTask(newTaskText)
+            inputBar.value = '';
+        }
+        else {
+            alert("❌ You can't create an empty task ❌")
+        }
+    }
 
     return (
         <Container>
-            <InputBar />
-            <AddButton>
+            <InputBar className="InputBar" onChange={(e) => setNewTaskText(e.target.value)}/>
+            <AddButton onClick={() => updateTask(newTaskText)}>
                 <AddButtonLogo src={addLogo} />
             </AddButton>
         </Container>

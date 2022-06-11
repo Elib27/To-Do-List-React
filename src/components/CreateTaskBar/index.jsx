@@ -4,6 +4,7 @@ import addLogo from '../../assets/add.svg'
 
 const Container = styled.div`
     display: flex;
+    margin-bottom: 20px;
     height: 45px;
     border-radius: 23px;
     width: 80%;

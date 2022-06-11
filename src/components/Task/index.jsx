@@ -101,7 +101,7 @@ const CheckedBox = styled.img`
 `
 
 
-function Task({ checked, taskText, id, toogleCheck}) {
+function Task({ checked, taskText, id, toogleCheck, deleteTask}) {
 
     return(
         <TaskContainer checked={checked}>
@@ -114,7 +114,7 @@ function Task({ checked, taskText, id, toogleCheck}) {
             <TaskContent checked={checked}>{ taskText }</TaskContent>
             <ButtonsWrapper>
                 <EditButton src={editLogo} checked={checked}/>
-                <TrashButton src={trashLogo} checked={checked}/>
+                <TrashButton src={trashLogo} checked={checked} onClick={() => deleteTask(id)}/>
             </ButtonsWrapper>
         </TaskContainer>
     )

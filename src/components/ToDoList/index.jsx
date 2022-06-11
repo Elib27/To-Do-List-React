@@ -22,18 +22,13 @@ const Header = styled.div`
 
 const Title = styled.div`
     font-size: 2rem;
-    font-weight: 400;
-    margin: 20px 0;
+    font-weight: 500;
+    margin: 40px 0 30px 0;
     position: relative;
-    color: ${colors.primary};
-    &::after{
-        content: 'To Do List';
-        width: 100%;
-        position: absolute;
-        top: -1.5px;
-        left : -1.5px;
-        color: #0d0d0d;
-    }
+    background: -webkit-linear-gradient(140deg, #409FF8, #8AC2F4);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 `
 
 const TaskList = styled.div`
@@ -44,30 +39,36 @@ const TaskList = styled.div`
     margin: 20px 0 60px 0;
 `
 
-function ToDoList(){
+function ToDoList() {
 
     const [taskList, setTaskList] = useState({
-        1: {content: "Ceci est une tâche 1", checked: false},
-        2: {content: "Ceci est une tâche 2", checked: true}
+        1: { content: "This is a task to do", checked: false },
+        2: { content: "This is a done task", checked: true }
     })
 
     const [taskCounter, setTaskCounter] = useState(3)
     const [newTaskText, setNewTaskText] = useState('')
 
-    function toogleCheck(id){
-       const newCheck = !(taskList[id]['checked'])
-        setTaskList({...taskList, [id]: {...taskList[id], checked : newCheck}})
+    function toogleCheck(id) {
+        const newCheck = !(taskList[id]['checked'])
+        setTaskList({ ...taskList, [id]: { ...taskList[id], checked: newCheck } })
     }
 
-    function createNewTask(taskContent){
-        setTaskList({...taskList, [taskCounter]: {content: taskContent, checked:false}})
+    function createNewTask(taskContent) {
+        setTaskList({ ...taskList, [taskCounter]: { content: taskContent, checked: false } })
         setNewTaskText('')
         setTaskCounter(taskCounter + 1)
     }
 
+    function deleteTask(taskId) {
+        const newTakList = {...taskList}
+        delete newTakList[taskId]
+        setTaskList(newTakList)
+    }
+
     useEffect(() => console.log(taskList), [taskList])
 
-    return(
+    return (
         <ToDoListContainer>
             <Header>
                 <Title>To Do List</Title>
@@ -76,7 +77,7 @@ function ToDoList(){
                     setNewTaskText={setNewTaskText}
                     createNewTask={createNewTask}
                 />
-            </Header>   
+            </Header>
             <TaskList>
                 {Object.keys(taskList).map((task) => {
                     return (
@@ -85,6 +86,7 @@ function ToDoList(){
                             taskText={taskList[task]['content']}
                             id={task}
                             toogleCheck={toogleCheck}
+                            deleteTask={deleteTask}
                         />
                     )
                 })}

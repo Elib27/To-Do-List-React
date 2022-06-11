@@ -4,6 +4,11 @@ import Task from '../Task/index'
 import CreateTaskBar from '../CreateTaskBar'
 import { useState, useEffect } from 'react'
 
+// ajouter modification
+// ajouter animations
+// ajouter responsive
+
+
 const ToDoListContainer = styled.div`
     min-height: 80vh;
     width: min(95vw, 550px);

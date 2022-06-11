@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import colors from '../../utils/colors'
 import editLogo from '../../assets/edit.svg'
 import trashLogo from '../../assets/trash.svg'
-import checkedLogo from '../../assets/checked.svg'
+import whiteCheckedLogo from '../../assets/checked.svg'
+import blueCheckedLogo from '../../assets/blueChecked.svg'
+import { useState } from 'react'
 
 const TaskContainer = styled.div`
     display: flex;
@@ -43,7 +45,6 @@ const ButtonsWrapper = styled.div`
     align-items: center;
 `
 
-
 const EditButton = styled.img`
     height: 24px;
     cursor: pointer;
@@ -58,6 +59,12 @@ const EditButton = styled.img`
             )
     }}}
     `
+
+const DoneEditingButton = styled.img`
+    height: 22px;
+    margin-right: 8px;
+    cursor: pointer;
+`
 
 const TrashButton = styled.img`
     height: 26px;
@@ -100,8 +107,46 @@ const CheckedBox = styled.img`
     user-select: none;
 `
 
+const EditTextInput = styled.input.attrs({
+    type : 'text'
+    })`
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    color: #4F4F4F;
+    background: ${colors.taskBackGround};
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 0;
+    ::placeholder,
+    ::-webkit-input-placeholder {
+    color: #B4B4B4;
+    }
+    :-ms-input-placeholder {
+     color: #B4B4B4;
+    }
+    &:focus{
+        outline: 0;
+    }
+`
+
 
 function Task({ checked, taskText, id, toogleCheck, deleteTask}) {
+
+    const [editMode, setEditMode] = useState(false)
+    const [editedText, setEditedText] = useState("")
+
+    let taskContent = taskText
+
+    function editText(){
+        setEditMode(true)
+        setEditedText(taskText)
+    }
+
+    function updateTask(){
+        setEditMode(false)
+        taskContent = editedText
+    }
 
     return(
         <TaskContainer checked={checked}>
@@ -109,11 +154,21 @@ function Task({ checked, taskText, id, toogleCheck, deleteTask}) {
                 checked={checked}
                 onClick={() => toogleCheck(id)}
             >
-                { checked && <CheckedBox src={checkedLogo}/> }
+                { checked && <CheckedBox src={whiteCheckedLogo}/> }
             </CheckBox>
-            <TaskContent checked={checked}>{ taskText }</TaskContent>
+            { editMode ? (
+                    <EditTextInput value={editedText} onChange={(e) => setEditedText(e.target.value)} />
+                ):(
+                    <TaskContent checked={checked}>{ taskContent }</TaskContent>
+                )
+            }
             <ButtonsWrapper>
-                <EditButton src={editLogo} checked={checked}/>
+                { editMode ? (
+                        <DoneEditingButton src={blueCheckedLogo} onClick={() => updateTask()} />
+                    ):(
+                        <EditButton src={editLogo} checked={checked} onClick={() => editText()}/>
+                    )
+                }
                 <TrashButton src={trashLogo} checked={checked} onClick={() => deleteTask(id)}/>
             </ButtonsWrapper>
         </TaskContainer>

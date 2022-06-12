@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/to-do-list-react/static/css/main.0802929a.css",
+    "main.js": "/to-do-list-react/static/js/main.09a267ac.js",
+    "static/media/trash.svg": "/to-do-list-react/static/media/trash.8d8752667ab52cacb96e772947b32c6a.svg",
+    "static/media/blueChecked.svg": "/to-do-list-react/static/media/blueChecked.b3adcc027da8286faf5bbf7010bc09a8.svg",
+    "static/media/checked.svg": "/to-do-list-react/static/media/checked.cab0bb25ac01a845375ada825f668f86.svg",
+    "static/media/edit.svg": "/to-do-list-react/static/media/edit.de51c691551adb569ff20e2a407ad4cd.svg",
+    "index.html": "/to-do-list-react/index.html",
+    "static/media/add.svg": "/to-do-list-react/static/media/add.92ccc72865c465d7060657c6aa587ee1.svg",
+    "main.0802929a.css.map": "/to-do-list-react/static/css/main.0802929a.css.map",
+    "main.09a267ac.js.map": "/to-do-list-react/static/js/main.09a267ac.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0802929a.css",
+    "static/js/main.09a267ac.js"
+  ]
+}

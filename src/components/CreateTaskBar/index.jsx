@@ -41,7 +41,7 @@ const AddButton = styled.div`
     align-items: center;
     height: 100%;
     width: 60px;
-    background-color: ${colors.primary};
+    background: -webkit-linear-gradient(140deg, #409FF8, #75aee0);
     cursor: pointer;
 `
 
@@ -53,7 +53,7 @@ const AddButtonLogo = styled.img`
 
 function CreateTaskBar({newTaskText, setNewTaskText, createNewTask}){
 
-    function updateTask(newTaskText){
+    function updateTaskList(newTaskText){
         let inputBar = document.querySelector('.InputBar')
         if(inputBar.value !== ''){
             createNewTask(newTaskText)
@@ -64,10 +64,20 @@ function CreateTaskBar({newTaskText, setNewTaskText, createNewTask}){
         }
     }
 
+    function createTaskBarOnEnter(key){
+        if(key === 'Enter'){
+            updateTaskList(newTaskText)
+        }
+    }
+
     return (
         <Container>
-            <InputBar className="InputBar" onChange={(e) => setNewTaskText(e.target.value)}/>
-            <AddButton onClick={() => updateTask(newTaskText)}>
+            <InputBar
+                className="InputBar"
+                onChange={(e) => setNewTaskText(e.target.value)}
+                onKeyPress={(e) => createTaskBarOnEnter(e.key)}
+            />
+            <AddButton onClick={() => updateTaskList(newTaskText)}>
                 <AddButtonLogo src={addLogo} />
             </AddButton>
         </Container>

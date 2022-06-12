@@ -2,12 +2,7 @@ import styled from 'styled-components'
 import colors from '../../utils/colors'
 import Task from '../Task/index'
 import CreateTaskBar from '../CreateTaskBar'
-import { useState, useEffect } from 'react'
-
-// ajouter modification
-// ajouter animations
-// ajouter responsive
-
+import { useState } from 'react'
 
 const ToDoListContainer = styled.div`
     min-height: 80vh;
@@ -36,12 +31,14 @@ const Title = styled.div`
     color: transparent;
 `
 
-const TaskList = styled.div`
+const TaskList = styled.ul`
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px 0 60px 0;
+    padding: 0;
+    list-style: none;
 `
 
 function ToDoList() {
@@ -54,11 +51,6 @@ function ToDoList() {
     const [taskCounter, setTaskCounter] = useState(3)
     const [newTaskText, setNewTaskText] = useState('')
 
-    function toogleCheck(id) {
-        const newCheck = !(taskList[id]['checked'])
-        setTaskList({ ...taskList, [id]: { ...taskList[id], checked: newCheck } })
-    }
-
     function createNewTask(taskContent) {
         setTaskList({ ...taskList, [taskCounter]: { content: taskContent, checked: false } })
         setNewTaskText('')
@@ -70,8 +62,6 @@ function ToDoList() {
         delete newTakList[taskId]
         setTaskList(newTakList)
     }
-
-    useEffect(() => console.log(taskList), [taskList])
 
     return (
         <ToDoListContainer>
@@ -90,8 +80,10 @@ function ToDoList() {
                             checked={taskList[task]['checked']}
                             taskText={taskList[task]['content']}
                             id={task}
-                            toogleCheck={toogleCheck}
+                            key={task}
                             deleteTask={deleteTask}
+                            taskList={taskList}
+                            setTaskList={setTaskList}
                         />
                     )
                 })}

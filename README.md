@@ -1,3 +1,3 @@
 #To Do List
 
-A simple To Do List in React
+A complete To Do List in React

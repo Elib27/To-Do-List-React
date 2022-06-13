@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/To-Do-List-React/static/css/main.0802929a.css",
-    "main.js": "/To-Do-List-React/static/js/main.95d9d063.js",
+    "main.js": "/To-Do-List-React/static/js/main.6b21d5d5.js",
     "static/media/trash.svg": "/To-Do-List-React/static/media/trash.8d8752667ab52cacb96e772947b32c6a.svg",
     "static/media/blueChecked.svg": "/To-Do-List-React/static/media/blueChecked.b3adcc027da8286faf5bbf7010bc09a8.svg",
     "static/media/checked.svg": "/To-Do-List-React/static/media/checked.cab0bb25ac01a845375ada825f668f86.svg",
@@ -9,10 +9,10 @@
     "index.html": "/To-Do-List-React/index.html",
     "static/media/add.svg": "/To-Do-List-React/static/media/add.92ccc72865c465d7060657c6aa587ee1.svg",
     "main.0802929a.css.map": "/To-Do-List-React/static/css/main.0802929a.css.map",
-    "main.95d9d063.js.map": "/To-Do-List-React/static/js/main.95d9d063.js.map"
+    "main.6b21d5d5.js.map": "/To-Do-List-React/static/js/main.6b21d5d5.js.map"
   },
   "entrypoints": [
     "static/css/main.0802929a.css",
-    "static/js/main.95d9d063.js"
+    "static/js/main.6b21d5d5.js"
   ]
 }

@@ -15,7 +15,7 @@ const TaskContainer = styled.li`
     align-items: center;
     height: 45px;
     background: ${colors.taskBackGround};
-    width: 80%;
+    width: ${({isMobile}) => isMobile ? '90%' : ' 80%'};
     margin-bottom: 30px;
     border-radius: 8px;
     overflow: hidden;
@@ -158,7 +158,7 @@ function Task({ checked, taskText, id, deleteTask, taskList, setTaskList}) {
     }
 
     return(
-        <TaskContainer checked={checked}>
+        <TaskContainer checked={checked} isMobile={isMobile}>
             <CheckBox
                 checked={checked}
                 onClick={() => toogleCheck(id)}
